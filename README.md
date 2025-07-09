@@ -25,4 +25,4 @@ Runs in Java 17, Springboot version 3.5.3
 Scheduler is running every 1 min to check vehicles that parked for 15 minutes and up
 
 ## Testing Notes
-make sure no get auth token and update all Authentication headers of each endpoint
+make sure to get auth token and update all value of Authentication Headers of each endpoint

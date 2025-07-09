@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface ParkingRecordRepository extends JpaRepository<ParkingRecord, Long> {
     Optional<ParkingRecord> findByLotIdAndLicensePlate(String lotId, String licensePlate);
-
+    Optional<ParkingRecord> findByLicensePlate(String licensePlate);
     List<ParkingRecord> findByCheckOutTimeIsNullAndCheckInTimeBefore(LocalDateTime checkOutTime);
 }

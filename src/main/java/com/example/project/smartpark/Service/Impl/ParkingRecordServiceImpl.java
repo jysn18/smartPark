@@ -36,8 +36,7 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
         Vehicle vehicle = vehicleRepository.findByLicensePlate(parkingRecordDto.getPlateNumber()).orElseThrow(
                 () -> new SmartParkException("Vehicle not registered"));
 
-        boolean isRecordPresent = parkingRecordRepository.findByLotIdAndLicensePlate(
-                parkingRecordDto.getParkingLotId(), parkingRecordDto.getPlateNumber()).isPresent();
+        boolean isRecordPresent = parkingRecordRepository.findByLicensePlate(parkingRecordDto.getPlateNumber()).isPresent();
 
         if(parkingLot.getOccupiedSpace() == parkingLot.getCapacity())
             throw new SmartParkException("Can not park car, parking lot full");

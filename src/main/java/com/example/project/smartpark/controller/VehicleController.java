@@ -21,7 +21,7 @@ public class VehicleController {
 
     @PostMapping("/register")
     public ResponseEntity<?> createVehicle(@RequestBody VehicleDto vehicle) {
-        logger.info("Registering car information...");
+        logger.info("Registering vehicle information...");
         try {
             var createdVehicle = vehicleService.createVehicle(vehicle);
             return ResponseEntity.ok().body(createdVehicle);

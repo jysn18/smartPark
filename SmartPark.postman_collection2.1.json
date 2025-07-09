@@ -1,0 +1,320 @@
+{
+	"info": {
+		"_postman_id": "a8e0edd3-4216-455d-b1eb-cb8a17762830",
+		"name": "SmartPark",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10523164"
+	},
+	"item": [
+		{
+			"name": "AuthToken",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzUyNzY2NjA5fQ.fJLOKZQAx8MJFKMlATc7I4qdJPfFOicRgYnzGRpfXNnxCgYt4AoSqEhG4p6xiUxtCaRUGRSTuNmrPAV5gGZyiw",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"user\",\n    \"password\":\"pass\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/token",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllVehicle",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzUyMDM4NDUwfQ.9WizicWHGhwC6xVsEPSbb8V8UkuaJvDEnbZIONS5M2392CXYiSD-VfsYmikMxQ-4l70ey-WQTRYdK3n0Td2idg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/vehicle/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vehicle",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllParkingLot",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzUyMDM4NDUwfQ.9WizicWHGhwC6xVsEPSbb8V8UkuaJvDEnbZIONS5M2392CXYiSD-VfsYmikMxQ-4l70ey-WQTRYdK3n0Td2idg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/parkinglot/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkinglot",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetParkingLotAndParkVehicle",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzUyMDM4NDUwfQ.9WizicWHGhwC6xVsEPSbb8V8UkuaJvDEnbZIONS5M2392CXYiSD-VfsYmikMxQ-4l70ey-WQTRYdK3n0Td2idg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/parkinglot/details?id=PXGzPuzw7BF10mRWP5qUhRIvzc3ko1uZB6FFzVC1HSRE0LNJn8",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkinglot",
+						"details"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "PXGzPuzw7BF10mRWP5qUhRIvzc3ko1uZB6FFzVC1HSRE0LNJn8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetParkingSlotAvailability",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzUyMDM4NDUwfQ.9WizicWHGhwC6xVsEPSbb8V8UkuaJvDEnbZIONS5M2392CXYiSD-VfsYmikMxQ-4l70ey-WQTRYdK3n0Td2idg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/parkinglot/availability?id=PXGzPuzw7BF10mRWP5qUhRIvzc3ko1uZB6FFzVC1HSRE0LNJn8",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkinglot",
+						"availability"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "PXGzPuzw7BF10mRWP5qUhRIvzc3ko1uZB6FFzVC1HSRE0LNJn8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterVehicle",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzUyMDM4NDUwfQ.9WizicWHGhwC6xVsEPSbb8V8UkuaJvDEnbZIONS5M2392CXYiSD-VfsYmikMxQ-4l70ey-WQTRYdK3n0Td2idg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"licensePlate\": \"ABC-1234\",\n    \"type\": \"TRUCK\",\n    \"ownerName\": \"JJ Manuel\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/vehicle/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vehicle",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterParkingLot",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzUyMDM4NDUwfQ.9WizicWHGhwC6xVsEPSbb8V8UkuaJvDEnbZIONS5M2392CXYiSD-VfsYmikMxQ-4l70ey-WQTRYdK3n0Td2idg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"location\": \"Fm Fairvew\",\n    \"capacity\": 50,\n    \"costPerMinute\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/parkinglot/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkinglot",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckinVehicle",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzUyMDU5OTE1fQ.IZfkx_nbV5AjG2NDjqMMKey-AHV_0KFezX7nJEXK0P1gAKrlHoWsP6dDc70kcALWJcIZzu04Nbp1SCgr0HZdPA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"parkingLotId\": \"PXGzPuzw7BF10mRWP5qUhRIvzc3ko1uZB6FFzVC1HSRE0LNJn8\",\n    \"plateNumber\": \"NCB-4651\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/parkingrecord/checkin",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkingrecord",
+						"checkin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckoutVehicle",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzUyMDU5OTE1fQ.IZfkx_nbV5AjG2NDjqMMKey-AHV_0KFezX7nJEXK0P1gAKrlHoWsP6dDc70kcALWJcIZzu04Nbp1SCgr0HZdPA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"parkingLotId\": \"PXGzPuzw7BF10mRWP5qUhRIvzc3ko1uZB6FFzVC1HSRE0LNJn8\",\n    \"plateNumber\": \"NCB-4651\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/parkingrecord/checkout",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parkingrecord",
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

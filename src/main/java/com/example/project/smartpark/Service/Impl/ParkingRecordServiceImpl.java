@@ -1,5 +1,6 @@
 package com.example.project.smartpark.Service.Impl;
 
+import com.example.project.smartpark.Dto.ParkingAvailability;
 import com.example.project.smartpark.Dto.ParkingCostDetails;
 import com.example.project.smartpark.Dto.ParkingRecordDto;
 import com.example.project.smartpark.Exception.SmartParkException;
@@ -32,17 +33,19 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
         ParkingLot parkingLot = parkingLotRepository.findByLotId(parkingRecordDto.getParkingLotId()).orElseThrow(
                 () -> new SmartParkException("Parking lotid entered is invalid"));
 
-        Vehicle vehicle = vehicleRepository.findByLicensePlate(parkingRecordDto.getPlateNumber());
-        ParkingRecord existingRecord = parkingRecordRepository.findByLotIdAndLicensePlate(
-                parkingRecordDto.getParkingLotId(), parkingRecordDto.getPlateNumber());
+        Vehicle vehicle = vehicleRepository.findByLicensePlate(parkingRecordDto.getPlateNumber()).orElseThrow(
+                () -> new SmartParkException("Vehicle not registered"));
+
+        boolean isRecordPresent = parkingRecordRepository.findByLotIdAndLicensePlate(
+                parkingRecordDto.getParkingLotId(), parkingRecordDto.getPlateNumber()).isPresent();
 
         if(parkingLot.getOccupiedSpace() == parkingLot.getCapacity())
-            throw new SmartParkException("Can not park car, parking lot full;");
+            throw new SmartParkException("Can not park car, parking lot full");
 
         ParkingRecord parkingRecord = new ParkingRecord();
         ParkingCostDetails parkingCostDetails;
 
-        if(vehicle != null && existingRecord == null) {
+        if(!isRecordPresent) {
             parkingRecord.setLotId(parkingLot.getLotId());
             parkingRecord.setLicensePlate(vehicle.getLicensePlate());
             parkingRecord.setCheckInTime(LocalDateTime.now());
@@ -53,7 +56,7 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
 
             parkingCostDetails = generateParkingCostDetails(parkingRecord, vehicle);
         } else {
-            throw new SmartParkException("Either Car is already park or car not yet registered...");
+            throw new SmartParkException("Vehicle is already parked...");
         }
         return parkingCostDetails;
     }
@@ -61,14 +64,16 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
     @Override
     @Transactional
     public ParkingCostDetails parkingRecordCheckout(ParkingRecordDto parkingRecordDto) throws SmartParkException {
-        Optional<ParkingLot> parkingLotOpt = parkingLotRepository.findByLotId(parkingRecordDto.getParkingLotId()) ;
-        Vehicle vehicle = vehicleRepository.findByLicensePlate(parkingRecordDto.getPlateNumber());
-        ParkingRecord existingRecord = parkingRecordRepository.findByLotIdAndLicensePlate(
+        ParkingLot parkingLot = parkingLotRepository.findByLotId(parkingRecordDto.getParkingLotId()).orElseThrow(
+                () -> new SmartParkException("Parking lotid entered is invalid"));
+        Vehicle vehicle = vehicleRepository.findByLicensePlate(parkingRecordDto.getPlateNumber()).orElseThrow(
+                () -> new SmartParkException("Vehicle not registered"));
+        var isRecordPresent = parkingRecordRepository.findByLotIdAndLicensePlate(
                 parkingRecordDto.getParkingLotId(), parkingRecordDto.getPlateNumber());
 
         ParkingCostDetails parkingCostDetails;
-        if(parkingLotOpt.isPresent() && vehicle != null && existingRecord != null) {
-            var parkingLot = parkingLotOpt.get();
+        if(isRecordPresent.isPresent()) {
+            var existingRecord = isRecordPresent.get();
             parkingLot.setOccupiedSpace(parkingLot.getOccupiedSpace() - 1);
             parkingLotRepository.save(parkingLot);
 
@@ -79,7 +84,7 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
 
             parkingRecordRepository.delete(existingRecord);
         } else {
-            throw new SmartParkException("Either is not in parking lot or car not yet registered...");
+            throw new SmartParkException("Vehicle is not in the parking lot, please check lot id...");
         }
         return parkingCostDetails;
     }
@@ -88,7 +93,6 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
         record.setCheckOutTime(checkoutTime);
         return Duration.between(record.getCheckInTime(), checkoutTime).toMinutes();
     }
-
 
     private ParkingCostDetails generateParkingCostDetails(ParkingRecord existingRecord, Vehicle vehicle){
         ParkingCostDetails parkingCostDetails = new ParkingCostDetails();

@@ -29,6 +29,9 @@ public class VehicleServiceImpl implements VehicleService {
         if(!vehicleDto.getOwnerName().matches("[a-zA-Z0-9 ]+$"))
             throw new SmartParkException("Invalid name, special character not allowed");
 
+        if(vehicleRepository.findByLicensePlate(vehicleDto.getLicensePlate()).isPresent())
+            throw new SmartParkException("Vehicle already registered");
+
         Vehicle vehicle = new Vehicle();
         vehicle.setLicensePlate(vehicleDto.getLicensePlate());
         vehicle.setType(vehicleDto.getType());

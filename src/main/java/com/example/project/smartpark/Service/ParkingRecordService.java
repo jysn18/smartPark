@@ -1,5 +1,6 @@
 package com.example.project.smartpark.Service;
 
+import com.example.project.smartpark.Dto.ParkingAvailability;
 import com.example.project.smartpark.Dto.ParkingCostDetails;
 import com.example.project.smartpark.Dto.ParkingRecordDto;
 import com.example.project.smartpark.Exception.SmartParkException;

@@ -68,7 +68,6 @@ public class SecurityConfig extends OncePerRequestFilter{
         http.addFilterAt(this, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/token").permitAll()
-                .requestMatchers("/h2-console/*").permitAll()
                 .anyRequest().authenticated());
         http.csrf(AbstractHttpConfigurer::disable);
         http.headers(AbstractHttpConfigurer::disable);

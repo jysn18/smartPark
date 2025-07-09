@@ -40,7 +40,7 @@ public class AuthLoginControllerTest implements Serializable {
         when(authenticationManager.authenticate(any())).thenReturn(authentication);
         when(jwtUtil.generateToken(any())).thenReturn("token");
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/auth/login")
+        mockMvc.perform(MockMvcRequestBuilders.post("/auth/token")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(data))
                 .andExpect(status().isOk())

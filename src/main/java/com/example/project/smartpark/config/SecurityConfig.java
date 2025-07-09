@@ -69,7 +69,7 @@ public class SecurityConfig extends OncePerRequestFilter{
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/login").permitAll()
                 .requestMatchers("/h2-console/*").permitAll()
-                .anyRequest().permitAll());
+                .anyRequest().authenticated());
         http.csrf(AbstractHttpConfigurer::disable);
         http.headers(AbstractHttpConfigurer::disable);
         return http.build();

@@ -25,4 +25,8 @@ Runs in Java 17, Springboot version 3.5.3
 Scheduler is running every 1 min to check vehicles that parked for 15 minutes and up
 
 ## Testing Notes
-make sure to get auth token and update all value of Authentication Headers of each endpoint
+1. Postman collection is already included on this folder `SmartPark.postman_collection2.1.json`
+2. Make sure to get the auth token and update all value the Authentication Headers of each endpoint.
+3. username and password for auth token is only static value 
+    - username: user
+    - password: pass
